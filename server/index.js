@@ -229,6 +229,10 @@ app.post("/api/chat", async (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`ALFRED server running on http://localhost:${port}`);
-});
+if (process.env.NODE_ENV !== "production" && !process.env.VERCEL) {
+  app.listen(port, () => {
+    console.log(`ALFRED server running on http://localhost:${port}`);
+  });
+}
+
+export default app;
